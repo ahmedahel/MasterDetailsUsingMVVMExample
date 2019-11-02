@@ -2,7 +2,6 @@ package com.example.masterdetailsmvvm.viewmodel;
 
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.ObservableInt;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -42,7 +41,7 @@ public class MostViewedViewModel extends ViewModel {
     }
 
     public void setMostViewedsInAdapter(List<MostViewed.Results> mostViewed) {
-        this.adapter.setMostVieweds(mostViewed);
+        this.adapter.setMostViewed(mostViewed);
         this.adapter.notifyDataSetChanged();
     }
 

@@ -37,7 +37,7 @@ public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleIt
     }
 
 
-    public void setMostVieweds(List<MostViewed.Results> mMostViewed) {
+    public void setMostViewed(List<MostViewed.Results> mMostViewed) {
         this.mMostViewed = mMostViewed;
     }
 

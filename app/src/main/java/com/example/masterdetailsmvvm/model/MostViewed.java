@@ -171,10 +171,6 @@ public class MostViewed extends BaseObservable {
         }
     }
 
-
-
-
-
     public void fetchList() {
         Callback<MostViewed> callback = new Callback<MostViewed>() {
             @Override
