@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.example.masterdetailsmvvm.viewmodel.MostViewedViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:baselineAligned="false"
+        android:divider="?android:attr/dividerHorizontal"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        tools:context=".ItemListActivity">
+
+        <!--
+        This layout is a two-pane layout for the Items
+        master/detail flow.
+
+        -->
+
+        <FrameLayout
+            android:layout_width="@dimen/item_width"
+            android:layout_height="wrap_content">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_list"
+            android:name="com.example.myapplication.ItemListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layoutManager="LinearLayoutManager"
+            app:setAdapter="@{model.getAdapter()}"
+            tools:context="com.example.myapplication.ItemListActivity"
+            tools:listitem="@layout/item_list_content" />
+
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:id="@+id/spinnerLoading"
+                android:indeterminate="true"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:visibility="@{model.loading}"
+                android:layout_gravity="center"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{model.showEmpty}"
+                android:text="No Data were returned."/>
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/item_detail_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3" />
+
+    </LinearLayout>
+
+</layout>

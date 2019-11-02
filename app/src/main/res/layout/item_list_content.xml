@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+
+        <variable
+            name="viewModel"
+            type="com.example.masterdetailsmvvm.viewmodel.MostViewedViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:onClick="@{() -> viewModel.onItemClick(position)}"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/img_placeholder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrow_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_gray_24dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:maxLines="2"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:text='@{""+viewModel.getMostViewedAt(position).title}'
+        android:textColor="@android:color/black"
+        tools:text="Epstein’s Autopsy ‘Points to Homicide,’ Pathologist Hired by Brother Claims"
+        app:layout_constraintEnd_toStartOf="@+id/arrow_image"
+        app:layout_constraintStart_toEndOf="@+id/item_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_abstract"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:maxLines="2"
+        tools:text="The New York City medical examiner strongly disputed the claim that evidence from the autopsy suggested strangulation."
+        android:text="@{viewModel.getMostViewedAt(position).abstractX}"
+        app:layout_constraintEnd_toEndOf="@id/item_title"
+        app:layout_constraintStart_toStartOf="@id/item_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_title" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_byline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="start|center"
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@+id/item_published_date"
+        android:text="@{viewModel.getMostViewedAt(position).byline}"
+        tools:text="By NIRAJ CHOKSHI and KAREN ZRAICK"
+        app:layout_constraintStart_toStartOf="@id/item_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_abstract" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_published_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_date_range_black_24dp"
+        android:gravity="center"
+        tools:text="2019-10-30"
+        android:text="@{viewModel.getMostViewedAt(position).published_date}"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/item_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_abstract" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
